@@ -2,6 +2,19 @@
 
 Scaffolding generator for starting Pony libraries.
 
+## Status
+
+The Library Scaffolding Generator is a new project. As such, it might have some bugs. It definitely makes some assumptions re: the environment is is used in:
+
+- You are using a GNU Linux environment
+- `sed` is available in your environment
+- `bash` is available in your environment
+
+This scaffolding generator:
+
+- Might not work on MacOS
+- Will not work on Windows
+
 ## Usage
 
 Edit the values in `config.bash` to match your particular library then run the scaffolding generator.
