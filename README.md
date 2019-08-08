@@ -25,7 +25,31 @@ bash generate-library.bash TARGET_DIRECTORY
 
 N.B. `generate-library.bash` will create TARGET_DIRECTORY if it doesn't already exist.
 
-Continue on to the `CircleCI Setup` section of this document and follow the directions there.
+### Fork main.actor-package-markdown
+
+Fork the [main.actor-package-markdown](https://github.com/ponylang/main.actor-package-markdown) as the user that matches the `GITHUB_USER` from your `config.bash`
+
+### Setup CircleCI
+
+You'll still need to setup CircleCI to take advantage of the included CircleCI configuration file including the automated release tasks.  To do this, you'll need:
+
+- A CircleCI account
+- To grant CircleCI access to your repository
+
+If you've never set up CircleCI before, we strongly suggest you check our their [documentation](https://circleci.com/docs/2.0/).
+
+You'll need to define the following environment variable as part of your CircleCI project:
+
+- GITHUB_TOKEN
+
+  A GitHub personal access token that can be used to login as the GITHUB_USER that you defined in `config.bash`
+
+Lastly, you'll need to set up a user deploy key via the CircleCI administrative UI. This key is needed because, as part of the release process, CircleCI will need to push code back to the GitHub repo from which it was cloned.
+
+- Under `Checkout SSH Keys` in the `Permissions` section of your project settings
+- You will see a box for `Add user key` that has a large `Authorize with GitHub` button.
+- Press the `Authorize with GitHub` button
+- Press the `Create and add USERNAME user key` button. This will give CircleCI permissions to modify your project as the USERNAME user.
 
 ## What you get
 
@@ -68,28 +92,6 @@ use "msgpack"
 ```
 
 then you have to create a directory called `msgpack` at the root of your repository. All your Pony source code (including tests) will live in that directory. That directory needs to match the value you use for the PROJECT variable in `config.bash`.
-
-## Setup CircleCI
-
-You'll still need to setup CircleCI to take advantage of the included CircleCI configuration file including the automated release tasks.  To do this, you'll need:
-
-- A CircleCI account
-- To grant CircleCI access to your repository
-
-If you've never set up CircleCI before, we strongly suggest you check our their [documentation](https://circleci.com/docs/2.0/).
-
-You'll need to define the following environment variable as part of your CircleCI project:
-
-- GITHUB_TOKEN
-
-  A GitHub personal access token that can be used to login as the GITHUB_USER that you defined in `config.bash`
-
-Lastly, you'll need to set up a user deploy key via the CircleCI administrative UI. This key is needed because, as part of the release process, CircleCI will need to push code back to the GitHub repo from which it was cloned.
-
-- Under `Checkout SSH Keys` in the `Permissions` section of your project settings
-- You will see a box for `Add user key` that has a large `Authorize with GitHub` button.
-- Press the `Authorize with GitHub` button
-- Press the `Create and add USERNAME user key` button. This will give CircleCI permissions to modify your project as the USERNAME user.
 
 ## How to structure your project
 
