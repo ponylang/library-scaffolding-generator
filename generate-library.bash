@@ -69,5 +69,9 @@ do
   fi
 done
 
+# Deal with special gitfile that we needed to give special names to
+mv "${TARGET_DIR}/gitattributes" "${TARGET_DIR}/.gitattributes"
+mv "${TARGET_DIR}/gitignore" "${TARGET_DIR}/.gitignore"
+
 # create PACKAGE directory
 mkdir -p "${TARGET_DIR}/${PACKAGE}"
