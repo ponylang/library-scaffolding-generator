@@ -38,14 +38,14 @@ jobs:
 
   cut-release:
     docker:
-      - image: ponylang/main.actor-ci:standard
+      - image: ponylang/shared-docker-ci-release-a-library:release
     steps:
       - checkout
       - run: bash .ci-scripts/release.bash "$CIRCLE_TAG" "$GITHUB_TOKEN"
 
   generate-documentation-pr-for-main-dot-actor:
     docker:
-      - image: ponylang/main.actor-ci:standard
+      - image: ponylang/shared-docker-ci-release-a-library:release
     steps:
       - checkout
       - run: bash .ci-scripts/documentation.bash "$CIRCLE_TAG" "$GITHUB_TOKEN"
