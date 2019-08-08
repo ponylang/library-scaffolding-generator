@@ -68,7 +68,7 @@ result=$(curl -X POST "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/r
   -u "${GITHUB_USER}:${GITHUB_TOKEN}" \
   --data "${json}")
 
-  rslt_scan=$(echo "${result}" | jq -r '.id')
+rslt_scan=$(echo "${result}" | jq -r '.id')
 if [ "$rslt_scan" != null ]
 then
   echo "Release notes uploaded"
@@ -77,3 +77,45 @@ else
   echo "${result}"
   exit 1
 fi
+
+# Update Last Week in Pony
+echo "Adding release to Last Week in Pony..."
+
+result=$(curl https://api.github.com/repos/ponylang/ponylang-website/issues?labels=last-week-in-pony)
+
+lwip_url=$(echo "${result}" | jq -r '.[].url')
+if [ "$lwip_url" != "" ]
+then
+  body="
+Version ${VERSION} of {%%PACKAGE%%} has been released.
+
+See the [release notes](https://github.com/{%%REPO_OWNER%%}/{%%REPO_NAME%%}/releases/tag/${VERSION}) for more details.
+"
+
+  jsontemplate="
+  {
+    \"body\":\$body
+  }
+  "
+
+  json=$(jq -n \
+  --arg body "$body" \
+  "${jsontemplate}")
+
+  result=$(curl -X POST "$lwp_url/comments" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -u "${GITHUB_USER}:${GITHUB_TOKEN}" \
+    --data "${json}")
+
+  rslt_scan=$(echo "${result}" | jq -r '.id')
+  if [ "$rslt_scan" != null ]
+  then
+    echo "Release notice posted to LWIP"
+  else
+    echo "Unable to post to LWIP, here's the curl output..."
+    echo "${result}"
+  fi
+else
+  echo "Unable to post to Last Week in Pony. Can't find the issue."
+fi
+

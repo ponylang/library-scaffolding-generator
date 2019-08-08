@@ -196,6 +196,7 @@ If you haven't forked that repository then it will be impossible to create a PR 
 - the CHANGELOG update and tag are pushed back to your repo
 - the CHANGELOG section for this release is added to the `X.Y.Z` release in GitHub.
 - a new "unreleased" section is added to the CHANGELOG and pushed back to your repo
+- A notice of the release is added to [LWIP](https://github.com/ponylang/ponylang-website/issues?q=is%3Aopen+is%3Aissue+label%3Alast-week-in-pony)
 - The `make docs` makefile target is run to generate documentation for the library
 - Your fork of `main.actor-package-markdown` is checked out
 - Your newly created documentation is added to your `main.actor-package-markdown` fork

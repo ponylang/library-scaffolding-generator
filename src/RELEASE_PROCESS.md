@@ -34,15 +34,10 @@ Navigate to the GitHub page for the release you just created. It will be somethi
 https://github.com/{%%REPO_OWNER%%}/{%%REPO_NAME%%}/releases/tag/0.3.1
 ```
 
-Copy the url to the page. You'll need it for the next two steps.
+Copy the url to the page. You'll need it for the next step.
 
 ### Inform the Pony Zulip
 
 Once you have the URL for the release notes, drop a note in the [#announce stream](https://ponylang.zulipchat.com/#narrow/stream/189932-announce) with a topic like "{%%REPO_NAME%%} 0.3.1 has been released" of the Pony Zulip letting everyone know that the release is out and include a link the release notes.
 
 If this is an "emergency release" that is designed to get a high priority bug fix out, be sure to note that everyone is advised to update ASAP.
-
-### Add to "Last Week in Pony"
-
-Last Week in Pony is the Pony community's weekly newsletter. Add information about the release, including a link to the release notes, to the [current Last Week in Pony](https://github.com/ponylang/ponylang.github.io/issues?q=is%3Aissue+is%3Aopen+label%3Alast-week-in-pony).
-
