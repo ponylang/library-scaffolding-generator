@@ -201,5 +201,3 @@ If you haven't forked that repository then it will be impossible to create a PR 
 - Your newly created documentation is added to your `main.actor-package-markdown` fork
 - A PR is opened from your `main.actor-package-markdown` against the official Ponylang repo.
 - Once that PR is merged, your documentation for this release will be live on [main.actor](https://main.actor)
-
-
