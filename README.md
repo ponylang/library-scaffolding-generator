@@ -171,3 +171,33 @@ COMPILE_WITH := stable env ponyc
 Please note, you will need to update the Makefile to run `stable fetch` for you
 if you want it run automatically, or you will need to run it manually at least
 once in order to get your dependencies.
+
+## How to release
+
+The scaffolding generator includes code that will create a new release of your library and generate it's documentation and open a PR to include your release's documentation on [main.actor](https://main.actor).
+
+To start a release, you need to push a tag in the format of `release-X.Y.Z` to your repo. This tag will trigger a CircleCI job that starts the release process. It is important to note:
+
+- You must tag `HEAD` of your `master` branch.
+
+Releasing from any other point is *not* supported at this time.
+
+- You must have a forked the [main.actor-package-markdown](https://github.com/ponylang/main.actor-package-markdown) for the release process to work.
+
+If you haven't forked that repository then it will be impossible to create a PR to update it. You need to make sure that the fork exists for the `GITHUB_USER` that you set in `config.bash` when generating your scaffolding.
+
+### What's happening behind the scenes
+
+- `release-X.Y.Z` tag is pushed
+- the CHANGELOG is updated to reflect the release
+- the tag `X.Y.Z` is added
+- the CHANGELOG update and tag are pushed back to your repo
+- the CHANGELOG section for this release is added to the `X.Y.Z` release in GitHub.
+- a new "unreleased" section is added to the CHANGELOG and pushed back to your repo
+- The `make docs` makefile target is run to generate documentation for the library
+- Your fork of `main.actor-package-markdown` is checked out
+- Your newly created documentation is added to your `main.actor-package-markdown` fork
+- A PR is opened from your `main.actor-package-markdown` against the official Ponylang repo.
+- Once that PR is merged, your documentation for this release will be live on [main.actor](https://main.actor)
+
+
