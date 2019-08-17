@@ -6,14 +6,15 @@ set -o nounset
 source env.bash
 
 # Gather expected arguments.
-if [ $# -lt 2 ]
+if [ $# -lt 3 ]
 then
-  echo "Tag and GH personal access token are required"
+  echo "Tag, GH personal access token, and Ponylang zulip access token are required"
   exit 1
 fi
 
 TAG=$1
 GITHUB_TOKEN=$2
+ZULIP_TOKEN=$3
 # changes tag from "release-1.0.0" to "1.0.0"
 VERSION="${TAG/release-/}"
 
@@ -119,3 +120,15 @@ else
   echo "Unable to post to Last Week in Pony. Can't find the issue."
 fi
 
+message="
+Version ${VERSION} of {%%PACKAGE%%} has been released.
+
+See the [release notes](https://github.com/{%%REPO_OWNER%%}/{%%REPO_NAME%%}/releases/tag/${VERSION}) for more details.
+"
+
+curl -X POST https://ponylang.zulipchat.com/api/v1/messages \
+  -u "${ZULIP_TOKEN}" \
+  -d "type=stream" \
+  -d "to=announce" \
+  -d "topic={%%PACKAGE%%}" \
+  -d "content=${message}"

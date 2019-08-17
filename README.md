@@ -29,6 +29,21 @@ N.B. `generate-library.bash` will create TARGET_DIRECTORY if it doesn't already 
 
 Fork the [main.actor-package-markdown](https://github.com/ponylang/main.actor-package-markdown) as the user that matches the `GITHUB_USER` from your `config.bash`
 
+### Setup a Zulip Bot
+
+As part of the included release process, notices about your library being released will be sent to the [Pony Zulip](https://ponylang.zulipchat.com/). If you don't already have an account, please create one now. Once you've created an account, you'll need to create a bot that will be used to post release messages on your behalf.
+
+In Zulip, go to your account settings. There will be a menu option `Your bots`.
+Select the `Add new bot` option.
+
+When setting up the bot you want to:
+
+- Set the `type` to `Incoming webhook`
+- Give the bot a meaningful `Full Name` like "My Package Release Bot" or "Sean's Annoucement Bot". All release notices will appear under that name.
+- Supply a `Username` that matches your `Full Name`
+
+After you push `Create Bot`, you'll be taken to your list of active bots. Copy the `API KEY` for your bot. This value will be used later in CircleCI as your `ZULIP_TOKEN`.
+
 ### Setup CircleCI
 
 You'll still need to setup CircleCI to take advantage of the included CircleCI configuration file including the automated release tasks.  To do this, you'll need:
@@ -38,11 +53,15 @@ You'll still need to setup CircleCI to take advantage of the included CircleCI c
 
 If you've never set up CircleCI before, we strongly suggest you check our their [documentation](https://circleci.com/docs/2.0/).
 
-You'll need to define the following environment variable as part of your CircleCI project:
+You'll need to define the following environment variables as part of your CircleCI project:
 
 - GITHUB_TOKEN
 
   A GitHub personal access token that can be used to login as the GITHUB_USER that you defined in `config.bash`
+
+- ZULIP_TOKEN
+
+  A Zulip API Key for a bot that will post to the Pony `announce` stream. Directions for creating are in the preceeding section of this document.
 
 Lastly, you'll need to set up a user deploy key via the CircleCI administrative UI. This key is needed because, as part of the release process, CircleCI will need to push code back to the GitHub repo from which it was cloned.
 
@@ -197,6 +216,7 @@ If you haven't forked that repository then it will be impossible to create a PR 
 - the CHANGELOG section for this release is added to the `X.Y.Z` release in GitHub.
 - a new "unreleased" section is added to the CHANGELOG and pushed back to your repo
 - A notice of the release is added to [LWIP](https://github.com/ponylang/ponylang-website/issues?q=is%3Aopen+is%3Aissue+label%3Alast-week-in-pony)
+- A notice of the release is posted to the [announce stream](https://ponylang.zulipchat.com/#narrow/stream/189932-announce) in the [Pony Zulip](https://ponylang.zulipchat.com/).
 - The `make docs` makefile target is run to generate documentation for the library
 - Your fork of `main.actor-package-markdown` is checked out
 - Your newly created documentation is added to your `main.actor-package-markdown` fork
