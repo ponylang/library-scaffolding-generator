@@ -9,6 +9,7 @@ The Library Scaffolding Generator is a new project. As such, it might have some 
 - You are using a GNU Linux environment
 - `sed` is available in your environment
 - `bash` is available in your environment
+- `realpath` is available in your environment
 
 This scaffolding generator:
 
@@ -42,7 +43,7 @@ When setting up the bot you want to:
 - Give the bot a meaningful `Full Name` like "My Package Release Bot" or "Sean's Annoucement Bot". All release notices will appear under that name.
 - Supply a `Username` that matches your `Full Name`
 
-After you push `Create Bot`, you'll be taken to your list of active bots. Copy the `API KEY` for your bot. This value will be used later in CircleCI as your `ZULIP_TOKEN`.
+After you push `Create Bot`, you'll be taken to your list of active bots. Copy the `USERNAME` and `API KEY` for your bot. These values will be used later in CircleCI as your `ZULIP_TOKEN`. Your `ZULIP_TOKEN` will be: `USERNAME:API KEY`.
 
 ### Setup CircleCI
 
@@ -57,11 +58,11 @@ You'll need to define the following environment variables as part of your Circle
 
 - GITHUB_TOKEN
 
-  A GitHub personal access token that can be used to login as the GITHUB_USER that you defined in `config.bash`
+  A GitHub personal access token that can be used to login as the GITHUB_USER that you defined in `config.bash`. The token needs to supply `public_repo` access.
 
 - ZULIP_TOKEN
 
-  A Zulip API Key for a bot that will post to the Pony `announce` stream. Directions for creating are in the preceeding section of this document.
+  A Zulip API Key for a bot that will post to the Pony `announce` stream. Directions for creating are in the preceding section of this document.
 
 Lastly, you'll need to set up a user deploy key via the CircleCI administrative UI. This key is needed because, as part of the release process, CircleCI will need to push code back to the GitHub repo from which it was cloned.
 

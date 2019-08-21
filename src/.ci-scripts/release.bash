@@ -3,7 +3,8 @@
 set -o errexit
 set -o nounset
 
-source env.bash
+base=$(dirname "$0")
+source "${base}/env.bash"
 
 # Gather expected arguments.
 if [ $# -lt 3 ]
@@ -103,7 +104,7 @@ See the [release notes](https://github.com/{%%REPO_OWNER%%}/{%%REPO_NAME%%}/rele
   --arg body "$body" \
   "${jsontemplate}")
 
-  result=$(curl -X POST "$lwp_url/comments" \
+  result=$(curl -X POST "$lwip_url/comments" \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -u "${GITHUB_USER}:${GITHUB_TOKEN}" \
     --data "${json}")
@@ -127,7 +128,7 @@ See the [release notes](https://github.com/{%%REPO_OWNER%%}/{%%REPO_NAME%%}/rele
 "
 
 curl -X POST https://ponylang.zulipchat.com/api/v1/messages \
-  -u "${ZULIP_TOKEN}" \
+  -u ${ZULIP_TOKEN} \
   -d "type=stream" \
   -d "to=announce" \
   -d "topic={%%PACKAGE%%}" \

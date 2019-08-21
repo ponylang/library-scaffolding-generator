@@ -13,13 +13,10 @@ then
   exit 1
 fi
 
-TARGET_DIR=$1
+TARGET_DIR=$(realpath "$1")
 
 # create target directory if it doesn't already exist
 mkdir -p "${TARGET_DIR}"
-
-# Move to the base project directory if not there already.
-#pushd "$(dirname "$0")" || exit 1
 
 # copy all files
 pushd "src" || exit 1

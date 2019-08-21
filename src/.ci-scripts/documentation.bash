@@ -3,7 +3,8 @@
 set -o errexit
 set -o nounset
 
-source env.bash
+base=$(dirname "$0")
+source "${base}/env.bash"
 
 # Gather expected arguments.
 if [ $# -lt 2 ]
@@ -20,8 +21,8 @@ TAG=$1
 GITHUB_TOKEN=$2
 
 # Shouldn't need to touch these
-BUILD_DIR="build/${PACKAGE_NAME}-docs"
-DOCS_DIR="${GEN_MD}/${PACKAGE_NAME}/${TAG}"
+BUILD_DIR="build/{%%PACKAGE%%}-docs"
+DOCS_DIR="${GEN_MD}/{%%PACKAGE%%}/${TAG}"
 
 # Generated markdown repo
 echo "Cloning main.actor-package-markdown repo into ${GEN_MD}"
@@ -44,11 +45,11 @@ echo "Preparing to upload generated markdown content from ${GEN_MD}"
 echo "Git fiddling commences..."
 pushd "${GEN_MD}" || exit 1
 echo "Creating a branch for generated documentation..."
-branch_name="${PACKAGE_NAME}-${TAG}"
+branch_name="{%%PACKAGE%%}-${TAG}"
 git checkout -b "${branch_name}"
 echo "Adding content..."
 git add .
-git commit -m "Add docs for package: ${PACKAGE_NAME} version: ${TAG}"
+git commit -m "Add docs for package: {%%PACKAGE%%} version: ${TAG}"
 echo "Uploading new generated markdown content..."
 git push --set-upstream origin "${branch_name}"
 echo "Generated markdown content has been uploaded!"
@@ -65,7 +66,7 @@ jsontemplate="
 "
 
 json=$(jq -n \
---arg title "${PACKAGE_NAME} ${TAG}" \
+--arg title "{%%PACKAGE%%} ${TAG}" \
 --arg incoming_repo_and_branch "${GITHUB_USER}:${branch_name}" \
 "${jsontemplate}")
 
