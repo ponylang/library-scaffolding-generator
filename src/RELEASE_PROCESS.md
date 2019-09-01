@@ -11,7 +11,7 @@ You must have commit access to the {%%REPO_NAME%%} repository
 Please note that this document was written with the assumption that you are using a clone of the `{%%REPO_NAME%%}` repo. You have to be using a clone rather than a fork. It is advised to your do this by making a fresh clone of the `{%%REPO_NAME%%}` repo from which you will release.
 
 ```bash
-git clone git@github.com:{%%REPO_OWNE%%R}/{%%REPO_NAME%%}.git {%%REPO_NAME%%}-release-clean
+git clone git@github.com:{%%REPO_OWNER%%}/{%%REPO_NAME%%}.git {%%REPO_NAME%%}-release-clean
 cd {%%REPO_NAME%%}-release-clean
 ```
 
