@@ -25,19 +25,3 @@ For the duration of this document, that we are releasing version is `0.3.1`. Any
 git tag release-0.3.1
 git push release-0.3.1
 ```
-
-### Get release notes URL
-
-Navigate to the GitHub page for the release you just created. It will be something like:
-
-```
-https://github.com/{%%REPO_OWNER%%}/{%%REPO_NAME%%}/releases/tag/0.3.1
-```
-
-Copy the url to the page. You'll need it for the next step.
-
-### Inform the Pony Zulip
-
-Once you have the URL for the release notes, drop a note in the [#announce stream](https://ponylang.zulipchat.com/#narrow/stream/189932-announce) with a topic like "{%%REPO_NAME%%} 0.3.1 has been released" of the Pony Zulip letting everyone know that the release is out and include a link the release notes.
-
-If this is an "emergency release" that is designed to get a high priority bug fix out, be sure to note that everyone is advised to update ASAP.
