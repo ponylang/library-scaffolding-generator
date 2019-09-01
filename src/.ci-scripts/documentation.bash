@@ -67,7 +67,7 @@ jsontemplate="
 
 json=$(jq -n \
 --arg title "{%%PACKAGE%%} ${TAG}" \
---arg incoming_repo_and_branch "${GITHUB_USER}:${branch_name}" \
+--arg incoming_repo_and_branch "${REPO_OWNER}:${branch_name}" \
 "${jsontemplate}")
 
 
