@@ -35,6 +35,9 @@ git tag "${VERSION}"
 # push to release to remote
 git push origin HEAD:master "${VERSION}"
 
+# delete release-VERSION tag
+git push --delete HEAD:master "release-${VERSION}"
+
 # update CHANGELOG for new entries
 changelog-tool unreleased -e
 
