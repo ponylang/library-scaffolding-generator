@@ -36,7 +36,7 @@ git tag "${VERSION}"
 git push origin HEAD:master "${VERSION}"
 
 # delete release-VERSION tag
-git push --delete origin HEAD:master "release-${VERSION}"
+git push --delete origin "release-${VERSION}"
 
 # update CHANGELOG for new entries
 changelog-tool unreleased -e
