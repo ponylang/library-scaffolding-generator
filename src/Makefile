@@ -5,6 +5,7 @@ COMPILE_WITH := ponyc
 
 BUILD_DIR ?= build/$(config)
 SRC_DIR ?= $(PACKAGE)
+EXAMPLES_DIR := examples
 tests_binary := $(BUILD_DIR)/$(PACKAGE)
 docs_dir := build/$(PACKAGE)-docs
 
@@ -21,6 +22,7 @@ else
 endif
 
 SOURCE_FILES := $(shell find $(SRC_DIR) -name \*.pony)
+EXAMPLE_SOURCE FILES := $(shell find $(EXAMPLES_DIR) -name \*.pony)
 
 test: unit-tests build-examples
 
@@ -30,7 +32,7 @@ unit-tests: $(tests_binary)
 $(tests_binary): $(SOURCE_FILES) | $(BUILD_DIR)
 	${PONYC} -o ${BUILD_DIR} $(SRC_DIR)
 
-build-examples:
+build-examples: $(SOURCE_FILES) $(EXAMPLES_SOURCE_FILES) | $(BUILD_DIR)
 	find examples/*/* -name '*.pony' -print | xargs -n 1 dirname  | sort -u | grep -v ffi- | xargs -n 1 -I {} ${PONYC} -s --checktree -o ${BUILD_DIR} {}
 
 clean:
