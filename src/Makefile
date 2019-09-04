@@ -27,7 +27,7 @@ test: unit-tests build-examples
 unit-tests: $(tests_binary)
 	$^ --exclude=integration --sequential
 
-$(tests_binary): $(GEN_FILES) $(SOURCE_FILES) | $(BUILD_DIR)
+$(tests_binary): $(SOURCE_FILES) | $(BUILD_DIR)
 	${PONYC} -o ${BUILD_DIR} $(SRC_DIR)
 
 build-examples:
@@ -39,7 +39,7 @@ clean:
 realclean:
 	rm -rf build
 
-$(docs_dir): $(GEN_FILES) $(SOURCE_FILES)
+$(docs_dir): $(SOURCE_FILES)
 	rm -rf $(docs_dir)
 	${PONYC} --docs-public --pass=docs --output build $(SRC_DIR)
 
