@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Fixed
 
+- Syntax error in Makefile ([PR #3](https://github.com/ponylang/library-scaffolding-generator/pull/3))
 
 ### Added
 
