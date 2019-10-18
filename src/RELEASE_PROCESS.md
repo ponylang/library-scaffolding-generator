@@ -1,6 +1,6 @@
 # How to cut a {%%REPO_NAME%%} release
 
-This document is aimed at members of the Pony team who might be cutting a release of Pony. It serves as a checklist that can take you through doing a release step-by-step.
+This document is aimed at maintainers who might be cutting a release of {%%REPO_NAME%%}. It serves as a checklist that can take you through doing a release step-by-step.
 
 ## Prerequisites
 
