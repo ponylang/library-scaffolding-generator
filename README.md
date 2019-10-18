@@ -40,7 +40,7 @@ Select the `Add new bot` option.
 When setting up the bot you want to:
 
 - Set the `type` to `Incoming webhook`
-- Give the bot a meaningful `Full Name` like "My Package Release Bot" or "Sean's Annoucement Bot". All release notices will appear under that name.
+- Give the bot a meaningful `Full Name` like "My Package Release Bot" or "Sean's Announcement Bot". All release notices will appear under that name.
 - Supply a `Username` that matches your `Full Name`
 
 After you push `Create Bot`, you'll be taken to your list of active bots. Copy the `USERNAME` and `API KEY` for your bot. These values will be used later in CircleCI as your `ZULIP_TOKEN`. Your `ZULIP_TOKEN` will be: `USERNAME:API KEY`.
