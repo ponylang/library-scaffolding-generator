@@ -5,7 +5,7 @@
 
 # GitHub user or organization that owns the project
 # https://github.com/OWNER/project
-# Unless this library is part of an organization, this should be your username.g
+# Unless this library is part of an organization, this should be your username.
 REPO_OWNER="ponylang"
 # Name of the project
 # https://github.com/ponylang/NAME
