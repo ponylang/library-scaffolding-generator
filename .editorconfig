@@ -1,0 +1,33 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+indent_style                = space
+indent_size                 = 4
+tab_width                   = 4
+end_of_line                 = lf
+charset                     = utf-8
+trim_trailing_whitespace    = true
+insert_final_newline        = true
+max_line_length             = 80
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style                = space
+indent_size                 = 8
+tab_width                   = 8
+
+# Matches the exact files either *.sh, *.bash or *.yml
+[{*.yml,*.sh,*.bash}]
+indent_style                = space
+indent_size                 = 2
+tab_width                   = 2
+
+# Matches the pony files
+[*.pony]
+indent_style                = space
+indent_size                 = 2
+tab_width                   = 2
