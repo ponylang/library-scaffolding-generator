@@ -1,7 +1,9 @@
 config ?= release
 
 PACKAGE := {%%PACKAGE%%}
-COMPILE_WITH := ponyc
+GET_DEPENDENCIES_WITH := corral fetch
+CLEAN_DEPENDENCIES_WITH := corral clean
+COMPILE_WITH := corral run -- ponyc
 
 BUILD_DIR ?= build/$(config)
 SRC_DIR := $(PACKAGE)
@@ -30,15 +32,18 @@ unit-tests: $(tests_binary)
 	$^ --exclude=integration --sequential
 
 $(tests_binary): $(SOURCE_FILES) | $(BUILD_DIR)
+	$(GET_DEPENDENCIES_WITH)
 	$(PONYC) -o ${BUILD_DIR} $(SRC_DIR)
 
 build-examples: $(SOURCE_FILES) $(EXAMPLES_SOURCE_FILES) | $(BUILD_DIR)
 	find examples/*/* -name '*.pony' -print | xargs -n 1 dirname  | sort -u | grep -v ffi- | xargs -n 1 -I {} $(PONYC) -s --checktree -o $(BUILD_DIR) {}
 
 clean:
+	$(CLEAN_DEPENDENCIES_WITH)
 	rm -rf $(BUILD_DIR)
 
 realclean:
+	$(CLEAN_DEPENDENCIES_WITH)
 	rm -rf build
 
 $(docs_dir): $(SOURCE_FILES)
