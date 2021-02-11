@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run: make test config=release
 
-  release-vs-ponyc-master:
+  release-vs-ponyc-main:
     docker:
       - image: ponylang/ponyc:latest
     steps:
@@ -29,7 +29,7 @@ jobs:
       - checkout
       - run: make test config=debug
 
-  debug-vs-ponyc-master:
+  debug-vs-ponyc-main:
     docker:
       - image: ponylang/ponyc:latest
     steps:
@@ -83,7 +83,7 @@ workflows:
           cron: "0 0 * * *"
           filters:
             branches:
-              only: master
+              only: main
     jobs:
-      - release-vs-ponyc-master
-      - debug-vs-ponyc-master
+      - release-vs-ponyc-main
+      - debug-vs-ponyc-main

@@ -76,7 +76,7 @@ Lastly, you'll need to set up a user deploy key via the CircleCI administrative 
 - A Makefile to automate building and testing
 - CircleCI setup (more actions will be required)
   * Build and test your project on each PR against most recent Pony release
-  * Support for a daily cron job to test your project against bleeding-edge Pony master.
+  * Support for a daily cron job to test your project against bleeding-edge Pony main.
 - Basic `.gitignore`
 - Contribution guide that matches Pony's.
 - Code of Conduct that matches Pony's.
@@ -200,7 +200,7 @@ The scaffolding generator includes code that will create a new release of your l
 
 To start a release, you need to push a tag in the format of `release-X.Y.Z` to your repo. This tag will trigger a CircleCI job that starts the release process. It is important to note:
 
-- You must tag `HEAD` of your `master` branch.
+- You must tag `HEAD` of your `main` branch.
 
 Releasing from any other point is *not* supported at this time.
 

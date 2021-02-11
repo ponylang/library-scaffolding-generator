@@ -19,7 +19,7 @@ ZULIP_TOKEN=$3
 # changes tag from "release-1.0.0" to "1.0.0"
 VERSION="${TAG/release-/}"
 
-### this doesn't account for master changing commit, assumes we are HEAD
+### this doesn't account for main changing commit, assumes we are HEAD
 # or can otherwise push without issue. that shouldl error out without issue.
 # leaving us to restart from a different HEAD commit
 # update CHANGELOG
@@ -33,7 +33,7 @@ git commit -m "Release ${VERSION}"
 git tag "${VERSION}"
 
 # push to release to remote
-git push origin HEAD:master "${VERSION}"
+git push origin HEAD:main "${VERSION}"
 
 # delete release-VERSION tag
 git push --delete origin "release-${VERSION}"
@@ -41,12 +41,12 @@ git push --delete origin "release-${VERSION}"
 # update CHANGELOG for new entries
 changelog-tool unreleased -e
 
-# commit changelog and push to master
+# commit changelog and push to main
 git add CHANGELOG.md
 git commit -m "Add unreleased section to CHANGELOG post ${VERSION} release
 
 [skip ci]"
-git push origin HEAD:master
+git push origin HEAD:main
 
 # release body
 echo "Preparing to update GitHub release notes..."

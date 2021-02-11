@@ -61,7 +61,7 @@ jsontemplate="
 {
   \"title\":\$title,
   \"head\":\$incoming_repo_and_branch,
-  \"base\":\"master\"
+  \"base\":\"main\"
 }
 "
 
